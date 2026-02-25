@@ -15,8 +15,8 @@ export const resumeConfig: ResumeConfig = {
       fr: 'Ingénieur Chef de Projet',
     },
     subtitle: {
-      en: '6 years of experience',
-      fr: '6 ans d\'expérience',
+      en: 'Passionate about new technologies and with several years of experience in development and project management. Back in France after a stay abroad, where I enriched my expertise while training in innovative practices in the tech industry.',
+      fr: 'Passionné par les nouvelles technologies et avec plusieurs années d\'expérience en développement et en Gestion de Projet. De retour en France après un séjour à l\'étranger, où j\'ai enrichi mon expertise tout en me formant à des pratiques innovantes dans l\'industrie tech. ',
     },
     location: 'Aubenas, France',
   },
@@ -109,7 +109,7 @@ export const resumeConfig: ResumeConfig = {
     {
       id: 0,
       isHighlighted: false,
-      company: { en: 'Australia ', fr: 'Autres activités professionnelles' },
+      company: { en: 'Other professional activities ', fr: 'Autres activités professionnelles' },
       role: { en: '', fr: '' },
       type: { en: 'Australia', fr: 'Australie' },
       period: { en: '2022 - 2025', fr: '2022 - 2025' },
