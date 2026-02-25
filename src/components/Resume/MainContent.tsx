@@ -8,9 +8,9 @@ import { EducationItem } from './EducationItem'
 export function MainContent() {
   const { resolve, resolveArray } = useTranslation()
   const { personal, experiences, projects, education, labels } = resumeConfig
-  const [expandedExp, setExpandedExp] = useState<string | null>(null)
+  const [expandedExp, setExpandedExp] = useState<number | null>(0)
 
-  const toggleExp = (id: string) => {
+  const toggleExp = (id: number) => {
     setExpandedExp(expandedExp === id ? null : id)
   }
 
@@ -43,39 +43,39 @@ export function MainContent() {
           {resolve(labels.sections.experience)}
         </h2>
         <div className="space-y-2">
-          {experiences.map((exp) => (
-            <ExperienceItem
-              key={exp.id}
-              year={resolve(exp.period)}
-              company={resolve(exp.company)}
-              type={exp.type ? resolve(exp.type) : undefined}
-              role={resolve(exp.role)}
-              description={resolve(exp.description)}
-              techs={exp.techs}
-              expanded={expandedExp === exp.id}
-              onToggle={() => toggleExp(exp.id)}
-              details={
-                exp.details
-                  ? {
-                      context: resolve(exp.details.context),
-                      tasks: exp.details.tasks ? resolveArray(exp.details.tasks) : undefined,
-                      training: exp.details.training ? resolveArray(exp.details.training) : undefined,
-                      env: resolve(exp.details.env),
-                    }
-                  : undefined
-              }
-              subItem={
-                exp.subItem
-                  ? {
-                      title: resolve(exp.subItem.title),
-                      description: resolve(exp.subItem.description),
-                    }
-                  : undefined
-              }
-              labels={experienceLabels}
-              isHighlighted={exp.isHighlighted}
-            />
-          ))}
+            {experiences.map((exp) => (
+              <ExperienceItem
+                key={exp.id}
+                year={resolve(exp.period)}
+                company={resolve(exp.company)}
+                type={exp.type ? resolve(exp.type) : undefined}
+                role={resolve(exp.role)}
+                description={resolve(exp.description)}
+                techs={exp.techs}
+                expanded={expandedExp === exp.id}
+                onToggle={() => toggleExp(exp.id)}
+                details={
+                  exp.details
+                    ? {
+                        context: resolve(exp.details.context),
+                        tasks: exp.details.tasks ? resolveArray(exp.details.tasks) : undefined,
+                        training: exp.details.training ? resolveArray(exp.details.training) : undefined,
+                        env: resolve(exp.details.env),
+                      }
+                    : undefined
+                }
+                subItem={
+                  exp.subItem
+                    ? {
+                        title: resolve(exp.subItem.title),
+                        description: resolve(exp.subItem.description),
+                      }
+                    : undefined
+                }
+                labels={experienceLabels}
+                isHighlighted={exp.isHighlighted}
+              />
+            ))}
         </div>
       </div>
 

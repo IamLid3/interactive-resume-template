@@ -26,7 +26,7 @@ export interface SkillItem {
   name: string | LocalizedString
   color?: string
   level?: LocalizedString
-  details?: string
+  details?: LocalizedString
 }
 
 // ===== EXPERIENCES =====
@@ -34,7 +34,7 @@ export interface SkillItem {
 import type { TechName } from './tech-registry'
 
 export interface Experience {
-  id: string
+  id: number
   company: LocalizedString
   role: LocalizedString
   type?: LocalizedString
@@ -136,7 +136,7 @@ export interface ResumeConfig {
   personal: {
     name: string
     photo?: string
-    photoBackEmoji?: string
+    photoBack?: string
     title: LocalizedString
     subtitle?: LocalizedString
     location?: string

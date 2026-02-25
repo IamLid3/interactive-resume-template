@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from '@/lib/i18n'
 import { resumeConfig } from '@/data/resume-config'
@@ -10,14 +10,31 @@ import { SkillCategory } from './SkillCategory'
 import { TechBadge } from './TechBadge'
 
 const PHOTO_ANIMATION_DURATION = 0.8
+const AUTO_FLIP_INTERVAL = 5000
+const AUTO_FLIP_COUNT = 3
 
-function SidebarPhoto({ photo, name, emoji }: { photo?: string; name: string; emoji?: string }) {
+function SidebarPhoto({ photo, name, emoji: photoBack }: { photo?: string; name: string; emoji?: string }) {
   const [isSpinning, setIsSpinning] = useState(false)
   const [hasError, setHasError] = useState(false)
+  const [rotation, setRotation] = useState(0)
+  const [autoFlipsRemaining, setAutoFlipsRemaining] = useState(AUTO_FLIP_COUNT)
+
+  useEffect(() => {
+    if (autoFlipsRemaining <= 0 || hasError || !photo) return
+
+    const timer = setTimeout(() => {
+      setIsSpinning(true)
+      setRotation((prev) => prev + 180)
+      setAutoFlipsRemaining((prev) => prev - 1)
+    }, AUTO_FLIP_INTERVAL)
+
+    return () => clearTimeout(timer)
+  }, [autoFlipsRemaining, hasError, photo])
 
   const handleFlip = () => {
     if (isSpinning) return
     setIsSpinning(true)
+    setRotation((prev) => prev + 180)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -31,7 +48,7 @@ function SidebarPhoto({ photo, name, emoji }: { photo?: string; name: string; em
     return (
       <div className="flex justify-center mb-6">
         <div className="w-32 h-32 rounded-full bg-gradient-to-br from-resume-primary to-resume-primary-light flex items-center justify-center border-4 border-resume-bg/30 shadow-lg">
-          <span className="text-4xl">{emoji || '👨‍💻'}</span>
+          <span className="text-4xl">{photoBack || '👨‍💻'}</span>
         </div>
       </div>
     )
@@ -43,16 +60,16 @@ function SidebarPhoto({ photo, name, emoji }: { photo?: string; name: string; em
         onClick={handleFlip}
         onKeyDown={handleKeyDown}
         onAnimationComplete={() => setIsSpinning(false)}
-        animate={{ rotateY: isSpinning ? 360 : 0 }}
+        animate={{ rotateY: rotation }}
         transition={{ duration: PHOTO_ANIMATION_DURATION, ease: 'easeInOut' }}
-        className="relative w-32 h-32 cursor-pointer"
+        className="relative w-32 h-32 cursor-pointer rounded-full"
         style={{ transformStyle: 'preserve-3d' }}
         role="button"
         tabIndex={0}
         aria-label={`Photo of ${name} — click to flip`}
       >
         <div
-          className="absolute inset-0 rounded-full overflow-hidden border-4 border-resume-bg/30 shadow-lg"
+          className=" absolute inset-0 rounded-full border-4 border-resume-bg/30 shadow-lg bg-gradient-to-br from-resume-primary to-resume-primary-light flex items-center justify-center overflow-hidden"
           style={{ backfaceVisibility: 'hidden' }}
         >
           <img
@@ -64,10 +81,16 @@ function SidebarPhoto({ photo, name, emoji }: { photo?: string; name: string; em
           />
         </div>
         <div
-          className="absolute inset-0 rounded-full border-4 border-resume-bg/30 shadow-lg bg-gradient-to-br from-resume-primary to-resume-primary-light flex items-center justify-center"
+          className="absolute inset-0 rounded-full border-4 border-resume-bg/30 shadow-lg bg-gradient-to-br from-resume-primary to-resume-primary-light flex items-center justify-center overflow-hidden"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
-          <span className="text-4xl">{emoji || '👨‍💻'}</span>
+          <img
+            src={photoBack}
+            alt={`Profile photo of ${name}`}
+            className="object-cover w-full h-full"
+            loading="lazy"
+            onError={() => setHasError(true)}
+          />
         </div>
       </motion.div>
     </div>
@@ -84,7 +107,7 @@ export function Sidebar() {
       <SidebarPhoto
         photo={(personal.photo || detectedAssets.photo) ? assetUrl(personal.photo || detectedAssets.photo!) : undefined}
         name={personal.name}
-        emoji={personal.photoBackEmoji}
+        emoji={(personal.photoBack || detectedAssets.photo) ? assetUrl(personal.photoBack || detectedAssets.photo!) : undefined}
       />
 
       {/* Contact */}
@@ -121,14 +144,14 @@ export function Sidebar() {
                   {category.items.map((item, j) => {
                     const name = typeof item.name === 'string' ? item.name : resolve(item.name)
                     return (
-                      <span key={`${name}-${j}`} className="flex items-center gap-1">
-                        <span className="text-resume-text-secondary">
-                          {name} {item.level ? resolve(item.level) : ''}
-                          {item.details && (
-                            <span className="text-xs opacity-70 ml-1">{item.details}</span>
-                          )}
-                        </span>
+                      <div key={`${name}-${j}`} className="flex items-center gap-1 w-full">
+                      <span className="text-resume-text-secondary break-words">
+                        {name} {item.level ? resolve(item.level) : ''}
+                        {item.details && (
+                        <span className="block text-xs opacity-70 mt-1">{item.details ? resolve(item.details) : ''}</span>
+                        )}
                       </span>
+                      </div>
                     )
                   })}
                 </div>
