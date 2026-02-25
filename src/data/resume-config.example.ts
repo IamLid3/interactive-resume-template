@@ -16,7 +16,7 @@ export const resumeConfig: ResumeConfig = {
     // Auto-detected: just drop your photo or profile image in public/images/ (any .jpg, .png, .webp)
     // You can also set a specific path here to override auto-detection:
     photo: '/images/photo.jpg',
-    photoBackEmoji: '👩‍💻', // Shown when clicking the photo (3D flip)
+    photoBack: '/images/photo-back.jpg', // Shown when clicking the photo (3D flip)
     title: {
       en: 'Fullstack Developer',
       fr: 'Développeuse Fullstack',
@@ -60,7 +60,7 @@ export const resumeConfig: ResumeConfig = {
       type: 'languages',
       items: [
         { name: { en: 'French', fr: 'Français' }, level: { en: 'Native', fr: 'Natif' } },
-        { name: { en: 'English', fr: 'Anglais' }, level: { en: 'Professional', fr: 'Professionnel' }, details: 'TOEIC 910' },
+        { name: { en: 'English', fr: 'Anglais' }, level: { en: 'Professional', fr: 'Professionnel' }, details: { en: 'TOEIC 910', fr: 'TOEIC 910' } },
       ],
     },
     {
@@ -110,7 +110,7 @@ export const resumeConfig: ResumeConfig = {
   // ===== PROFESSIONAL EXPERIENCES =====
   experiences: [
     {
-      id: 'company-a',
+      id: 0,
       company: { en: 'TechCorp', fr: 'TechCorp' },
       role: { en: 'Senior Fullstack Developer', fr: 'Développeuse Fullstack Senior' },
       type: { en: 'Permanent', fr: 'CDI' },
@@ -155,7 +155,7 @@ export const resumeConfig: ResumeConfig = {
           ],
           fr: [
             'Certification AWS Solutions Architect',
-            'Formation interne sur l\'orchestration Kubernetes',
+            'Formation sur le Bluetooth Low Energy (BLE)',
           ],
         },
         env: {
@@ -165,7 +165,7 @@ export const resumeConfig: ResumeConfig = {
       },
     },
     {
-      id: 'company-b',
+      id: 1,
       company: { en: 'WebAgency', fr: 'WebAgency' },
       role: { en: 'Frontend Developer', fr: 'Développeuse Frontend' },
       type: { en: 'Permanent', fr: 'CDI' },
@@ -217,7 +217,7 @@ export const resumeConfig: ResumeConfig = {
       },
     },
     {
-      id: 'internship',
+      id: 2,
       company: { en: 'StartupXYZ', fr: 'StartupXYZ' },
       role: { en: 'Fullstack Developer Intern', fr: 'Stagiaire Développeuse Fullstack' },
       type: { en: 'Internship', fr: 'Stage' },

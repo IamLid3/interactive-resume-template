@@ -1,10 +1,12 @@
 import { lazy, Suspense, useEffect } from 'react'
-import { LanguageProvider } from '@/lib/i18n'
 import { ThemeProvider, useTheme } from '@/lib/theme'
 import { Resume } from '@/components/Resume'
 import { presets } from '@/data/presets'
 import type { PresetName } from '@/data/types'
 import { resumeConfig } from '@/data/resume-config'
+import { LanguageProvider } from './lib/i18n'
+
+
 
 const Agentation = lazy(() =>
   import('agentation').then((m) => ({ default: m.Agentation }))
@@ -17,10 +19,10 @@ const Agentation = lazy(() =>
  */
 function SeoHead() {
   useEffect(() => {
+    // console.log('Resolving SEO strings with current language:', resolve(resumeConfig.seo.title));
     const { title, description } = resumeConfig.seo
-    document.title = title
-    document.querySelector('meta[name="description"]')?.setAttribute('content', description)
-  }, [])
+    document.title = title,
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description)  }, [])
   return null
 }
 

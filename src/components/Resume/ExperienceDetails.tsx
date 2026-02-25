@@ -27,7 +27,7 @@ export function ExperienceDetailsContent({
   labels,
   variant,
 }: ExperienceDetailsContentProps) {
-  const MAX_INLINE_TASKS = 6
+  const MAX_INLINE_TASKS = 8
 
   return (
     <div className="space-y-3">
