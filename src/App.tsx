@@ -19,8 +19,8 @@ const Agentation = lazy(() =>
  */
 function SeoHead() {
   useEffect(() => {
-    // console.log('Resolving SEO strings with current language:', resolve(resumeConfig.seo.title));
     const { title, description } = resumeConfig.seo
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     document.title = title,
     document.querySelector('meta[name="description"]')?.setAttribute('content', description)  }, [])
   return null
