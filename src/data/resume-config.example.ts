@@ -364,6 +364,7 @@ export const resumeConfig: ResumeConfig = {
       clickHint: { en: 'Click on experiences to see more details', fr: 'Cliquez sur les expériences pour voir plus de détails' },
       switchTheme: { en: 'Toggle dark mode', fr: 'Changer le thème' },
       downloadPdf: { en: 'Download PDF', fr: 'Télécharger le PDF' },
+      printResume: { en: 'Print resume', fr: 'Imprimer le CV' },
     },
   },
 }

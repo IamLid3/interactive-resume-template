@@ -47,7 +47,7 @@ function SidebarPhoto({ photo, name, emoji: photoBack }: { photo?: string; name:
   if (!photo || hasError) {
     return (
       <div className="flex justify-center mb-6">
-        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-resume-primary to-resume-primary-light flex items-center justify-center border-4 border-resume-bg/30 shadow-lg">
+        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-resume-primary to-resume-primary-light flex items-center justify-center border-4 border-resume-bg/30 shadow-lg profile-photo">
           <span className="text-4xl">{photoBack || '👨‍💻'}</span>
         </div>
       </div>
@@ -62,7 +62,7 @@ function SidebarPhoto({ photo, name, emoji: photoBack }: { photo?: string; name:
         onAnimationComplete={() => setIsSpinning(false)}
         animate={{ rotateY: rotation }}
         transition={{ duration: PHOTO_ANIMATION_DURATION, ease: 'easeInOut' }}
-        className="relative w-32 h-32 cursor-pointer rounded-full"
+        className="relative w-32 h-32 cursor-pointer rounded-full profile-photo"
         style={{ transformStyle: 'preserve-3d' }}
         role="button"
         tabIndex={0}
@@ -75,7 +75,7 @@ function SidebarPhoto({ photo, name, emoji: photoBack }: { photo?: string; name:
           <img
             src={photo}
             alt={`Profile photo of ${name}`}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full profile-photo"
             loading="lazy"
             onError={() => setHasError(true)}
           />
@@ -87,7 +87,7 @@ function SidebarPhoto({ photo, name, emoji: photoBack }: { photo?: string; name:
           <img
             src={photoBack}
             alt={`Profile photo of ${name}`}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full profile-photo"
             loading="lazy"
             onError={() => setHasError(true)}
           />

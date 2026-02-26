@@ -48,3 +48,23 @@ body {
 * {
   box-sizing: border-box;
 }
+
+/* print tweaks: hide controls, remove truncation, and expand details */
+@media print {
+  /* Tailwind already supports `print:hidden`, but we include other global adjustments here */
+  .line-clamp-2 {
+    -webkit-line-clamp: unset !important;
+  }
+  /* ensure any collapse wrappers are shown in case the JS expansion didn't run in time */
+  .overflow-hidden {
+    overflow: visible !important;
+  }
+  /* keep only the profile picture circular when printing */
+  .profile-photo {
+    border-radius: 9999px !important;
+    overflow: hidden !important;
+  }
+  .profile-photo img {
+    border-radius: 9999px !important;
+  }
+}

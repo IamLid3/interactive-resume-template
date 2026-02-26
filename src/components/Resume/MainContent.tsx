@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { flushSync } from 'react-dom'
 import { useTranslation } from '@/lib/i18n'
 import { resumeConfig } from '@/data/resume-config'
 import { ExperienceItem } from './ExperienceItem'
@@ -8,11 +9,35 @@ import { EducationItem } from './EducationItem'
 export function MainContent() {
   const { resolve, resolveArray } = useTranslation()
   const { personal, experiences, projects, education, labels } = resumeConfig
-  const [expandedExp, setExpandedExp] = useState<number | null>(0)
+  // `expandedExp` can be a number to indicate which item is open, `null` when none
+  // or the special string 'all' which means every experience should be expanded (used when printing)
+  const [expandedExp, setExpandedExp] = useState<number | null | 'all'>(0)
 
   const toggleExp = (id: number) => {
+    // ignore toggles while printing: we don't want the user to collapse when 'all' is active
+    if (expandedExp === 'all') return
     setExpandedExp(expandedExp === id ? null : id)
   }
+
+  // automatically expand all entries when printing and restore afterwards
+  useEffect(() => {
+    const handleBefore = () => {
+      // ensure React updates before the print snapshot is taken
+      flushSync(() => setExpandedExp('all'))
+    }
+    const handleAfter = () => setExpandedExp(null)
+    window.addEventListener('beforeprint', handleBefore)
+    window.addEventListener('afterprint', handleAfter)
+    // our own event triggered by the print button, may fire earlier than browser event
+    window.addEventListener('resume:beforeprint', handleBefore)
+    window.addEventListener('resume:prepare-print', handleBefore)
+    return () => {
+      window.removeEventListener('beforeprint', handleBefore)
+      window.removeEventListener('afterprint', handleAfter)
+      window.removeEventListener('resume:beforeprint', handleBefore)
+      window.removeEventListener('resume:prepare-print', handleBefore)
+    }
+  }, [])
 
   const experienceLabels = {
     mainTasks: resolve(labels.experience.mainTasks),
@@ -54,7 +79,7 @@ export function MainContent() {
                 role={resolve(exp.role)}
                 description={resolve(exp.description)}
                 techs={exp.techs}
-                expanded={expandedExp === exp.id}
+                expanded={expandedExp === 'all' || expandedExp === exp.id}
                 onToggle={() => toggleExp(exp.id)}
                 details={
                   exp.details

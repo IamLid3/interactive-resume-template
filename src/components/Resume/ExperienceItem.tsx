@@ -126,7 +126,7 @@ export function ExperienceItem({
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden"
+              className="overflow-hidden print:overflow-visible print:!h-auto"
             >
               <div className="ml-24 mt-2 mb-4 p-4 bg-resume-bg rounded-lg border border-resume-primary/20">
                 <ExperienceDetailsContent
