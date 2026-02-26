@@ -127,6 +127,8 @@ export interface ResumeLabels {
     clickHint: LocalizedString
     switchTheme: LocalizedString
     downloadPdf?: LocalizedString
+    /** text for the print button shown on screen */
+    printResume?: LocalizedString
   }
 }
 
