@@ -65,6 +65,8 @@ export const resumeConfig: ResumeConfig = {
         { name: 'React' },
         { name: 'TypeScript' },
         { name: 'Vue.js', color: '#42b883' },
+        { name: 'Ionic', color: '#3880ff' },
+        { name: 'JavaScript' }
       ],
     },
     {
@@ -96,51 +98,63 @@ export const resumeConfig: ResumeConfig = {
       ],
     },
     {
-      title: { en: 'Methodologies', fr: 'Méthodologies' },
-      type: 'text',
+      title: { en: 'Artificial Intelligence', fr: 'Intelligence Artificielle' },
+      type: 'badges',
       items: [
-        { name: { en: 'Agile/Scrum, TDD, Code Review, CI/CD', fr: 'Agile/Scrum, TDD, Code Review, CI/CD' } },
+        { name: 'ChatGPT', color: '#00c9ff' },
+        { name: 'Claude.AI', color: '#00c9ff' },
+        { name: 'Copilot', color: '#00c9ff' },
+        { name: 'Sora', color: '#00c9ff' },
+      ],
+    },
+    {
+      title: { en: 'Methodologies', fr: 'Méthodologies' },
+      type: 'badges',
+      items: [
+        { name: 'Agile/Scrum', color: '#61dafb' },
+        { name: 'TDD', color: '#e34c26' },
+        { name: 'Code Review', color: '#f0db4f' },
+        { name: 'CI/CD', color: '#68a063' },
       ],
     },
   ],
 
   // ===== PROFESSIONAL EXPERIENCES =====
   experiences: [
-    {
+      {
       id: 0,
       isHighlighted: false,
-      company: { en: 'Other professional activities ', fr: 'Autres activités professionnelles' },
-      role: { en: '', fr: '' },
+      company: { en: 'Imperial Glass', fr: 'Imperial Glass' },
+      role: { en: 'Project Manager / Glazier', fr: ' Chef de Projet / Vitrier' },
       type: { en: 'Australia', fr: 'Australie' },
       period: { en: '2022 - 2025', fr: '2022 - 2025' },
       description: {
-        en: '',
-        fr: '',
+        en: 'Project manager / glazier in the construction industry in Australia, with extensive experience in management and project coordination.',
+        fr: 'Chef de projet / vitrier dans le bâtiment en Australie, avec une forte expérience en management et en coordination de projets. ',
       },
-      techs: ['React', 'Node.js', 'MongoDB', 'AI', 'Docker', 'AWS'],
+      techs: [],
       details: {
         context: {
-          en: 'Seasonal work as a Project Manager/Glazier in the construction industry in Australia, with occasional web development assignments for clients. Enriching management experience.',
-          fr: 'Travail saisonnier de Chef de Projet / Vitrier dans le Batiment en Australie, avec des missions ponctuelles de développement web pour des clients. Expérience enrichissante en management.',
+          en: 'Replacement of all glass facades on a luxury building comprising 52 apartments, including 3 penthouses, in downtown Mandurah, Australia.',
+          fr: 'Remplacement de l\'intégralité des façades vitrées d\'un bâtiment luxueux de 52 appartements dont 3 Penthouses au centre-ville de Mandurah, en Australie.',
         },
         tasks: {
           en: [
-            'Developed the product catalog with advanced filtering and search',
-            'Built the shopping cart with real-time inventory checking',
-            'Integrated Stripe payment gateway with 3D Secure support',
-            'Implemented user authentication with JWT and OAuth (Google, Facebook)',
-            'Created an admin dashboard for order management and analytics',
-            'Wrote API documentation with Swagger/OpenAPI',
+            'Planning and managing glazing installation projects (windows, facades, storefronts).',
+            'Coordinating technical teams and subcontractors on-site.',
+            'Managing procurement and relationships with suppliers.',
+            'Monitoring project progress while ensuring deadlines and budgets are met.',
+            'Ensuring installation quality and compliance with safety standards.',
+            'Acting as the main point of contact between clients, field teams, and other contractors.',
           ],
           fr: [
-            'Apprentissage continu et veille technologique (React, Node.js, Cloud, IA)',
-            'Développement de projets personnels.',
-            'Expérience internationale en Australie (adaptabilité, pratique de l\'anglais)',
+            'Planification et pilotage de chantiers de pose de vitrages (fenêtres, façades, vitrines).',
+            'Coordination des équipes techniques et des sous-traitants sur site.',
+            'Gestion des approvisionnements et relation avec les fournisseurs.',
+            'Suivi de l\'avancement des travaux et respect des délais et budgets.',
+            'Contrôle qualité des installations et conformité aux normes de sécurité.',
+            'Interface entre clients, équipes terrain et autres corps de métier.',
           ],
-        },
-        env: {
-          en: 'React / Node.js / MongoDB / GPT-4 / Claude.AI / Docker / AWS',
-          fr: 'React / Node.js / MongoDB / GPT-4 / Claude.AI / Docker / AWS',
         },
       },
     },
@@ -264,6 +278,16 @@ export const resumeConfig: ResumeConfig = {
       },
       techs: ['Vue.js', 'TypeScript', 'Node.js', '.NET Core', 'Electron'],
       url: 'https://www.nemeio.com/fr/',
+    },
+    {
+      id: 'project-c',
+      title: { en: 'Shusholl', fr: 'Shusholl' },
+      description: {
+        en: 'Shusholl is a drinking game app that I developed with the help of AI and JavaScript. It offers a fun and interactive way to enjoy social gatherings, with a variety of game modes and customizable rules.',
+        fr: 'Shusholl est une application de jeu à boire que j\'ai développée à l\'aide de l\'IA et de JavaScript. Elle offre un moyen amusant et interactif de profiter des réunions entre amis, avec une variété de modes de jeu et des règles personnalisables.',
+      },
+      techs: ['JavaScript', 'HTML', 'CSS', 'ChatGPT', 'Claude.AI'],
+      url: 'https://shusholl.netlify.app/',
     },
   ],
 

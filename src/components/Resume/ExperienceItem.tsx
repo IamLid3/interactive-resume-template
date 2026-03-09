@@ -13,21 +13,21 @@ interface ExperienceItemProps {
   type?: string
   role: string
   description: string
-  techs: string[]
+  techs?: string[]
   expanded: boolean
   onToggle: () => void
   details?: {
     context: string
     tasks?: string[]
     training?: string[]
-    env: string
+    env?: string
   }
   subItem?: { title: string; description: string }
   labels: {
     mainTasks: string
     moreTasks: string
     training?: string
-    techEnv: string
+    techEnv?: string
     technologies: string
   }
   isHighlighted?: boolean
@@ -104,7 +104,7 @@ export function ExperienceItem({
             <p className="text-xs text-resume-text-secondary/80 mt-1 line-clamp-2">{description}</p>
 
             <div className="flex flex-wrap gap-1.5 mt-2">
-              {techs.map((tech) => (
+              {techs?.map((tech) => (
                 <TechBadge key={tech} tech={tech} />
               ))}
             </div>

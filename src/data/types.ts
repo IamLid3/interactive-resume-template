@@ -40,7 +40,7 @@ export interface Experience {
   type?: LocalizedString
   period: LocalizedString
   description: LocalizedString
-  techs: (TechName | (string & {}))[]
+  techs?: (TechName | (string & {}))[]
   isHighlighted?: boolean
   subItem?: {
     title: LocalizedString
@@ -50,7 +50,7 @@ export interface Experience {
     context: LocalizedString
     tasks?: LocalizedStringArray
     training?: LocalizedStringArray
-    env: LocalizedString
+    env?: LocalizedString
   }
 }
 
