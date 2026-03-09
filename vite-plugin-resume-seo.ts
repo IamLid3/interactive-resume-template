@@ -186,8 +186,8 @@ function buildNoscriptHtml(
       if (exp.type) meta.push(resolve(exp.type))
       lines.push(`${indent}      <p style="margin: 0 0 0.25rem 0; color: #777; font-size: 0.9rem;">${escapeHtml(meta.join(' · '))}</p>`)
       lines.push(`${indent}      <p style="margin: 0 0 0.25rem 0;">${escapeHtml(resolve(exp.description))}</p>`)
-      if (exp.techs.length > 0) {
-        lines.push(`${indent}      <p style="margin: 0; color: #555; font-size: 0.9rem;">${escapeHtml(exp.techs.join(', '))}</p>`)
+      if ((exp.techs ?? []).length > 0) {
+        lines.push(`${indent}      <p style="margin: 0; color: #555; font-size: 0.9rem;">${escapeHtml(exp.techs!.join(', '))}</p>`)
       }
       if (exp.details?.tasks) {
         const tasks = exp.details.tasks[config.languages.default] ?? Object.values(exp.details.tasks)[0]
