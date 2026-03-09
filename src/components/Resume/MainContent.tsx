@@ -43,7 +43,7 @@ export function MainContent() {
     mainTasks: resolve(labels.experience.mainTasks),
     moreTasks: resolve(labels.experience.moreTasks),
     training: labels.experience.training ? resolve(labels.experience.training) : undefined,
-    techEnv: resolve(labels.experience.techEnv),
+    techEnv: labels.experience.techEnv ? resolve(labels.experience.techEnv) : undefined, 
     technologies: resolve(labels.experience.technologies),
   }
 
@@ -72,35 +72,35 @@ export function MainContent() {
         <div className="space-y-2">
             {experiences.map((exp) => (
               <ExperienceItem
-                key={exp.id}
-                year={resolve(exp.period)}
-                company={resolve(exp.company)}
-                type={exp.type ? resolve(exp.type) : undefined}
-                role={resolve(exp.role)}
-                description={resolve(exp.description)}
-                techs={exp.techs}
-                expanded={expandedExp === 'all' || expandedExp === exp.id}
-                onToggle={() => toggleExp(exp.id)}
-                details={
-                  exp.details
-                    ? {
-                        context: resolve(exp.details.context),
-                        tasks: exp.details.tasks ? resolveArray(exp.details.tasks) : undefined,
-                        training: exp.details.training ? resolveArray(exp.details.training) : undefined,
-                        env: resolve(exp.details.env),
-                      }
-                    : undefined
-                }
-                subItem={
-                  exp.subItem
-                    ? {
-                        title: resolve(exp.subItem.title),
-                        description: resolve(exp.subItem.description),
-                      }
-                    : undefined
-                }
-                labels={experienceLabels}
-                isHighlighted={exp.isHighlighted}
+              key={exp.id}
+              year={resolve(exp.period)}
+              company={resolve(exp.company)}
+              type={exp.type ? resolve(exp.type) : undefined}
+              role={resolve(exp.role)}
+              description={resolve(exp.description)}
+              techs={exp.techs && exp.techs.length > 0 ? exp.techs : undefined}
+              expanded={expandedExp === 'all' || expandedExp === exp.id}
+              onToggle={() => toggleExp(exp.id)}
+              details={
+                exp.details
+                ? {
+                  context: resolve(exp.details.context),
+                  tasks: exp.details.tasks ? resolveArray(exp.details.tasks) : undefined,
+                  training: exp.details.training ? resolveArray(exp.details.training) : undefined,
+                  env: exp.details.env ? resolve(exp.details.env) : undefined,
+                  }
+                : undefined
+              }
+              subItem={
+                exp.subItem
+                ? {
+                  title: resolve(exp.subItem.title),
+                  description: resolve(exp.subItem.description),
+                  }
+                : undefined
+              }
+              labels={experienceLabels}
+              isHighlighted={exp.isHighlighted}
               />
             ))}
         </div>
